@@ -4,14 +4,16 @@
 
 # (1) Opening Statements
 
+pin_number = 1234
+
 print("Welcome to Redstone Bank!")
 print("\n")
-pin_number = int(input("Please Enter Your PIN: "))  # to keep things simple, the initial PIN is 1234
+entered_pin = int(input("Please Enter Your PIN: "))  # to keep things simple, the initial PIN is 1234
 print("\n")
 
 # (2) Validate PIN
 
-if pin_number == 1234:
+if entered_pin == pin_number:
     print("Hello, Dear Customer. Please choose which service you would like today from the following options below: ")
     print("\n")
     print("1. Check Balance")
@@ -19,6 +21,7 @@ if pin_number == 1234:
     print("3. Cash Deposit")
     print("4. Change PIN")
     print("5. Exit ATM")
+    print("\n")
 else:
     print("Invalid PIN.")
     input("Press 'ENTER' to exit the program.")
@@ -28,9 +31,9 @@ else:
 balance = 500
 
 def checkBalance():
-    global balance
+    global balance # need to give variable global scope to use it in multiple functions
     print("\n")
-    print("Current Balance: \xa3", balance)
+    print("Current Balance: \xa3", balance) # \xa3 = "£" sign
 
 def cashWithdrawal():
     global balance
