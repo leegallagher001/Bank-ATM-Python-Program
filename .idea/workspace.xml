@@ -4,7 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="32a02eef-21a0-4b1b-81ca-e1c04438875f" name="Changes" comment="Started work on a basic Python ATM program with withdrawal and deposit functionality">
+    <list default="true" id="32a02eef-21a0-4b1b-81ca-e1c04438875f" name="Changes" comment="Minor changes - changed the way that the PIN number works and added a few spaces. Next step might be to make some sort of way to save the PIN number for future use (using JSON most likely).">
+      <change afterPath="$PROJECT_DIR$/pin_number.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Bank ATM Python Program.py" beforeDir="false" afterPath="$PROJECT_DIR$/Bank ATM Python Program.py" afterDir="false" />
     </list>
@@ -23,34 +24,35 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "leegallagher001"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;leegallagher001&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/leegallagher001/Bank-ATM-Python-Program.git",
-    "accountId": "fd9853e7-b1a9-48f5-ab28-7facb7d566f8"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/leegallagher001/Bank-ATM-Python-Program.git&quot;,
+    &quot;accountId&quot;: &quot;fd9853e7-b1a9-48f5-ab28-7facb7d566f8&quot;
   }
-}]]></component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 7
-}]]></component>
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 7
+}</component>
   <component name="ProjectId" id="341Ew0dN0qomN9D9NybVwcOzJaX" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Python.Bank ATM Python Program.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python.Bank ATM Python Program.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;
   }
-}]]></component>
+}</component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -75,11 +77,31 @@
       <option name="project" value="LOCAL" />
       <updated>1760384185780</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Minor changes - changed the way that the PIN number works and added a few spaces. Next step might be to make some sort of way to save the PIN number for future use (using JSON most likely).">
+      <option name="closed" value="true" />
+      <created>1760479521153</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1760479521153</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Started work on a basic Python ATM program with withdrawal and deposit functionality" />
-    <option name="LAST_COMMIT_MESSAGE" value="Started work on a basic Python ATM program with withdrawal and deposit functionality" />
+    <MESSAGE value="Minor changes - changed the way that the PIN number works and added a few spaces. Next step might be to make some sort of way to save the PIN number for future use (using JSON most likely)." />
+    <option name="LAST_COMMIT_MESSAGE" value="Minor changes - changed the way that the PIN number works and added a few spaces. Next step might be to make some sort of way to save the PIN number for future use (using JSON most likely)." />
   </component>
 </project>

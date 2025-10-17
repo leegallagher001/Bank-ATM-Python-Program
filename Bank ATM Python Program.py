@@ -2,31 +2,14 @@
 
 # This program is designed to replicate the experience of using an ATM that has the ability to allow the user to both withdraw and deposit cash
 
-# (1) Opening Statements
+# Copious amount of (probably quite obvious) comments, as once again I'm new to using JSON with Python and I really need them!
 
-pin_number = 1234
+# (0) Imports & JSON File (For Storing Current PIN)
+import json
 
-print("Welcome to Redstone Bank!")
-print("\n")
-entered_pin = int(input("Please Enter Your PIN: "))  # to keep things simple, the initial PIN is 1234
-print("\n")
+pin_file = "pin_number.json" # imported JSON file
 
-# (2) Validate PIN
-
-if entered_pin == pin_number:
-    print("Hello, Dear Customer. Please choose which service you would like today from the following options below: ")
-    print("\n")
-    print("1. Check Balance")
-    print("2. Cash Withdrawal")
-    print("3. Cash Deposit")
-    print("4. Change PIN")
-    print("5. Exit ATM")
-    print("\n")
-else:
-    print("Invalid PIN.")
-    input("Press 'ENTER' to exit the program.")
-
-# (3) Define Initial Variable Values & Functions
+# (1) Define Initial Functions & Variable Values
 
 balance = 500
 
@@ -57,40 +40,95 @@ def cashDeposit():
     print("Successfully deposited \xa3", deposit_amount, ". You have \xa3", balance, " remaining.")
 
 def changePIN():
+
     global pin_number
-    print("\n")
-    verify_current_pin = int(input("Enter Your Current PIN: "))
-    if verify_current_pin == pin_number:
-        pin_number = int(input("Enter A New PIN Number: "))
+
+    verify_current_pin = int(input("Please enter your current PIN number: "))
+
+    if verify_current_pin == (pin_number["pin"]):
+        with open(pin_file, 'r') as f:
+            pin_number = json.load(f)
+            new_pin = int(input("Please enter a new PIN: "))
+            pin_number["pin"] = new_pin
+
+        with open(pin_file, 'w') as f:
+            json.dump(pin_number, f, indent=4)
+        print("PIN successfully changed!")
+
+    else:
+        print("Invalid PIN - please try another time.")
+
+# (2) Opening Statements
+
+print("Welcome to Redstone Bank!")
+print("\n")
+
+with open(pin_file, 'r') as f:
+    pin_number = json.load(f)
+
+if not pin_number:
+    pin = int(input("Please enter a new PIN number: ")) # appears if no PIN number stored in JSON file
+
+    pin_number = {
+        "pin": pin
+    }
+
+    with open(pin_file, 'w') as f:
+        json.dump(pin_number, f, indent=4)
+
+else:
+
+    enter_pin = int(input("Please enter your PIN number: ")) # appears if PIN number already present in JSON file
+
+    with open(pin_file, 'r') as f:
+        pin_number = json.load(f)
+    if enter_pin == (pin_number["pin"]):
+
+# (3) Validate PIN
+
+        print("Hello, Dear Customer. Please choose which service you would like today from the following options below: ")
+        print("\n")
+        print("1. Check Balance")
+        print("2. Cash Withdrawal")
+        print("3. Cash Deposit")
+        print("4. Change PIN")
+        print("5. Exit ATM")
+        print("\n")
 
 # (4) Activate Menu (Call Functionality)
 
-menuChoice = int(input("Which Option Do You Choose?: "))
+        menuChoice = int(input("Which Option Do You Choose?: "))
 
-while menuChoice != 5:
-    if menuChoice == 1:
-        checkBalance()
-        print("\n")
-        menuChoice = int(input("Looking for something else? Choose another menu option: "))
-    elif menuChoice == 2:
-        cashWithdrawal()
-        print("\n")
-        menuChoice = int(input("Looking for something else? Choose another menu option: "))
-    elif menuChoice == 3:
-        cashDeposit()
-        print("\n")
-        menuChoice = int(input("Looking for something else? Choose another menu option: "))
-    elif menuChoice == 4:
-        changePIN()
-        print("\n")
-        menuChoice = int(input("Looking for something else? Choose another menu option: "))
-    else:
-        print("Invalid Input")
-        print("\n")
-        menuChoice = int(input("Looking for something else? Choose another menu option: "))
+        while menuChoice != 5:
+            if menuChoice == 1:
+                checkBalance()
+                print("\n")
+                menuChoice = int(input("Looking for something else? Choose another menu option: "))
+            elif menuChoice == 2:
+                cashWithdrawal()
+                print("\n")
+                menuChoice = int(input("Looking for something else? Choose another menu option: "))
+            elif menuChoice == 3:
+                cashDeposit()
+                print("\n")
+                menuChoice = int(input("Looking for something else? Choose another menu option: "))
+            elif menuChoice == 4:
+                changePIN()
+                print("\n")
+                menuChoice = int(input("Looking for something else? Choose another menu option: "))
+            else:
+                print("Invalid Input")
+                print("\n")
+                menuChoice = int(input("Looking for something else? Choose another menu option: "))
+
+    else: # Invalid PIN, ends program after pressing 'enter'
+        print("Invalid PIN.")
+        input("Press 'ENTER' to exit the program.")
+        exit()
 
 print("\n")
 print("Thanks for using the Redstone Bank ATM!")
 print("\n")
-print("Press 'ENTER' to exit the program.")
+input("Press 'ENTER' to exit the program.")
+exit()
 
