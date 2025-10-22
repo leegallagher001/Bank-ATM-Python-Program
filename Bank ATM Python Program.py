@@ -41,22 +41,30 @@ def cashDeposit():
 
 def changePIN():
 
+    # spent a long time figuring this one out and got there in the end - without AI even!
+
     global pin_number
 
-    verify_current_pin = int(input("Please enter your current PIN number: "))
+    pin_change = True
 
-    if verify_current_pin == (pin_number["pin"]):
-        with open(pin_file, 'r') as f:
-            pin_number = json.load(f)
-            new_pin = int(input("Please enter a new PIN: "))
-            pin_number["pin"] = new_pin
+    while pin_change == True:
+        verify_current_pin = int(input("Please enter your current PIN number (4 digits): "))
 
-        with open(pin_file, 'w') as f:
-            json.dump(pin_number, f, indent=4)
-        print("PIN successfully changed!")
+        if verify_current_pin == (pin_number["pin"]):
+            with open(pin_file, 'r') as f:
+                pin_number = json.load(f)
+                new_pin = int(input("Please enter a new PIN: "))
+                if len(str(new_pin)) == 4:
+                    pin_number["pin"] = new_pin # tried many complicated solutions here before realising this very simple one worked
+                else:
+                    print("PIN Number must be 4 digits.")
+                    pin_change = False
+                    break
 
-    else:
-        print("Invalid PIN - please try another time.")
+            with open(pin_file, 'w') as f:
+                json.dump(pin_number, f, indent=4)
+            print("PIN successfully changed!")
+            pin_change = False
 
 # (2) Opening Statements
 
@@ -67,14 +75,19 @@ with open(pin_file, 'r') as f:
     pin_number = json.load(f)
 
 if not pin_number:
-    pin = int(input("Please enter a new PIN number: ")) # appears if no PIN number stored in JSON file
+    pin = int(input("Please enter a new PIN number (4 digits): ")) # appears if no PIN number stored in JSON file
 
-    pin_number = {
-        "pin": pin
-    }
+    if len(str(pin)) == 4:
 
-    with open(pin_file, 'w') as f:
-        json.dump(pin_number, f, indent=4)
+        pin_number = {
+            "pin": pin
+        }
+
+        with open(pin_file, 'w') as f:
+            json.dump(pin_number, f, indent=4)
+
+    else:
+        print("PIN Number must be 4 digits.")
 
 else:
 
