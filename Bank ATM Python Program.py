@@ -5,20 +5,55 @@
 # Copious amount of (probably quite obvious) comments, as once again I'm new to using JSON with Python and I really need them!
 
 # (0) Imports & JSON File (For Storing Current PIN)
-import json
 
+import json
 pin_file = "pin_number.json" # imported JSON file
 
 # (1) Define Initial Functions & Variable Values
 
 balance = 500
 
-def checkBalance():
+def mainMenu(): # (4A) Main Menu
+    print("Hello, Dear Customer. Please choose which service you would like today from the following options below: ")
+    print("\n")
+    print("1. Check Balance")
+    print("2. Cash Withdrawal")
+    print("3. Cash Deposit")
+    print("4. Change PIN")
+    print("5. Exit ATM")
+    print("\n")
+
+    menuChoice = int(input("Which Option Do You Choose?: "))
+
+    while menuChoice != 5:
+        if menuChoice == 1:
+            checkBalance()
+            print("\n")
+            menuChoice = int(input("Looking for something else? Choose another menu option: "))
+        elif menuChoice == 2:
+            cashWithdrawal()
+            print("\n")
+            menuChoice = int(input("Looking for something else? Choose another menu option: "))
+        elif menuChoice == 3:
+            cashDeposit()
+            print("\n")
+            menuChoice = int(input("Looking for something else? Choose another menu option: "))
+        elif menuChoice == 4:
+            changePIN()
+            print("\n")
+            menuChoice = int(input("Looking for something else? Choose another menu option: "))
+        else:
+            print("Invalid Input")
+            print("\n")
+            menuChoice = int(input("Looking for something else? Choose another menu option: "))
+
+
+def checkBalance(): # (5A) Menu Option 1
     global balance # need to give variable global scope to use it in multiple functions
     print("\n")
     print("Current Balance: \xa3", balance) # \xa3 = "£" sign
 
-def cashWithdrawal():
+def cashWithdrawal(): # (5B) Menu Option 2
     global balance
     print("\n")
     print("Both \xa310 and \xa320 notes are available.")
@@ -32,14 +67,14 @@ def cashWithdrawal():
         print("\n")
         print("Insufficient funds for transaction.")
 
-def cashDeposit():
+def cashDeposit(): # (5C) Menu Option 3
     global balance
     print("\n")
     deposit_amount = int(input("How much would you like to deposit?: "))
     balance += deposit_amount
     print("Successfully deposited \xa3", deposit_amount, ". You have \xa3", balance, " remaining.")
 
-def changePIN():
+def changePIN(): # (5D) Menu Option 4
 
     # spent a long time figuring this one out and got there in the end - without AI even!
 
@@ -71,6 +106,8 @@ def changePIN():
 print("Welcome to Redstone Bank!")
 print("\n")
 
+# (3) PIN Number Entry & Validation
+
 with open(pin_file, 'r') as f:
     pin_number = json.load(f)
 
@@ -86,6 +123,8 @@ if not pin_number:
         with open(pin_file, 'w') as f:
             json.dump(pin_number, f, indent=4)
 
+        mainMenu()
+
     else:
         print("PIN Number must be 4 digits.")
 
@@ -96,48 +135,16 @@ else:
     with open(pin_file, 'r') as f:
         pin_number = json.load(f)
     if enter_pin == (pin_number["pin"]):
+        mainMenu()
 
-# (3) Validate PIN
-
-        print("Hello, Dear Customer. Please choose which service you would like today from the following options below: ")
-        print("\n")
-        print("1. Check Balance")
-        print("2. Cash Withdrawal")
-        print("3. Cash Deposit")
-        print("4. Change PIN")
-        print("5. Exit ATM")
-        print("\n")
-
-# (4) Activate Menu (Call Functionality)
-
-        menuChoice = int(input("Which Option Do You Choose?: "))
-
-        while menuChoice != 5:
-            if menuChoice == 1:
-                checkBalance()
-                print("\n")
-                menuChoice = int(input("Looking for something else? Choose another menu option: "))
-            elif menuChoice == 2:
-                cashWithdrawal()
-                print("\n")
-                menuChoice = int(input("Looking for something else? Choose another menu option: "))
-            elif menuChoice == 3:
-                cashDeposit()
-                print("\n")
-                menuChoice = int(input("Looking for something else? Choose another menu option: "))
-            elif menuChoice == 4:
-                changePIN()
-                print("\n")
-                menuChoice = int(input("Looking for something else? Choose another menu option: "))
-            else:
-                print("Invalid Input")
-                print("\n")
-                menuChoice = int(input("Looking for something else? Choose another menu option: "))
+    # (4B) Invalid PIN Entry
 
     else: # Invalid PIN, ends program after pressing 'enter'
         print("Invalid PIN.")
         input("Press 'ENTER' to exit the program.")
         exit()
+
+# (6) Closing Statements & End Of Program
 
 print("\n")
 print("Thanks for using the Redstone Bank ATM!")
